@@ -1,0 +1,73 @@
+<body>
+    <textarea id="compare1"></textarea>
+    <textarea id="compare2"></textarea>
+    <button id="lmao">Ы</button>
+    <h1 id="result">/</h1>
+    <h2 id="dets">/</h2>
+</body>
+<style>
+    textarea {
+        width: 30vw;
+        height: 30vh;
+        margin-bottom: 2vw;
+    }
+    body {
+        padding: 0;
+        background-color: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    button {
+        width: 15vw;
+        height: 5vh;
+        margin-bottom: 2vw;
+    }
+    h1 {
+        margin: 0;
+        font-size: 4vw;
+    }
+    h2 {
+        margin: 0;
+        margin-top: 2vw;
+        font-size: 2vw;
+        width: 90vw;
+    }
+</style>
+<script>
+    document.getElementById("lmao").onclick = function() {
+        var text1 = document.getElementById('compare1').value;
+        var text2 = document.getElementById('compare2').value;
+
+        var prod1 = text1.split("\n");
+        var prod2 = text2.split("\n");
+        var product1 = prod1.map(item => item.split(':'));
+        var product2 = prod2.map(item => item.split(':'));
+
+        var judge = 0;
+        var dets = [];
+
+        product1.forEach(function(i) {
+            product2.forEach(function(f) {
+                if (i[0] == f[0]) {
+                    if (i[0] != "")
+                    if (i[1] != f[1]) {
+                        judge =+ 1;
+                        dets.push(i);
+                        dets.push(f);
+                        dets.push(".............");
+                    }
+                }
+            });
+        });
+        
+        if (judge > 0) {
+            document.getElementById("result").innerHTML = "Все плоха";
+            document.getElementById("dets").innerHTML = dets;
+            } else {
+                document.getElementById("result").innerHTML = "Ok";
+                document.getElementById("dets").innerHTML = ".";
+            }
+    }
+</script>
